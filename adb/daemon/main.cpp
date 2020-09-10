@@ -35,7 +35,7 @@
 #include <log/log_properties.h>
 #include <scoped_minijail.h>
 
-#include <private/android_filesystem_config.h>
+#include "/media/federico/6cc18d04-f36f-4bc9-9d09-8353293c8444/umts_spyder/android/lineage/system/core/include/private/android_filesystem_config.h"
 #include "debuggerd/handler.h"
 #include "selinux/android.h"
 
@@ -110,8 +110,8 @@ static void drop_privileges(int server_port) {
     // AID_UHID for using 'hid' command to read/write to /dev/uhid
     gid_t groups[] = {AID_ADB,          AID_LOG,          AID_INPUT,    AID_INET,
                       AID_NET_BT,       AID_NET_BT_ADMIN, AID_SDCARD_R, AID_SDCARD_RW,
-                      AID_NET_BW_STATS, AID_READPROC,     AID_UHID};
-    minijail_set_supplementary_gids(jail.get(), arraysize(groups), groups);
+                      AID_NET_BW_STATS, AID_READPROC,     /*AID_UHID*/};
+    minijail_set_supplementary_gids(jail.get(), sizeof(groups) / sizeof(groups[0]), groups);
 
     // Don't listen on a port (default 5037) if running in secure mode.
     // Don't run as root if running in secure mode.
